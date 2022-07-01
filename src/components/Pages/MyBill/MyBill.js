@@ -1,6 +1,9 @@
 import React from 'react';
+import AddBillModal from './AddBillModal/AddBillModal';
 
 const MyBill = () => {
+
+
     return (
         <div className='bg-transparent'>
             <div class="max-w-7xl mx-auto">
@@ -12,7 +15,7 @@ const MyBill = () => {
                             <input type="text" placeholder="Type here" class="input input-bordered input-md w-full max-w-xs" />
                         </div>
                         <div>
-                            <button className='btn btn-primary'>Add New Bill</button>
+                            <label htmlFor="add-bill-modal" className='btn btn-primary'>Add New Bill</label>
                         </div>
 
                     </div>
@@ -20,7 +23,7 @@ const MyBill = () => {
                     <div className='mt-5'>
                         <div class="overflow-x-auto">
                             <table class="table w-full">
-                                
+
                                 <thead>
                                     <tr>
                                         <th>Billing ID</th>
@@ -32,7 +35,7 @@ const MyBill = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+
                                     <tr>
                                         <th>1</th>
                                         <td>Cy Ganderton</td>
@@ -41,8 +44,8 @@ const MyBill = () => {
                                         <td>Blue</td>
                                         <td>Blue</td>
                                     </tr>
-                                    
-                                    
+
+
                                 </tbody>
                             </table>
                         </div>
@@ -50,6 +53,9 @@ const MyBill = () => {
                     </div>
                 </div>
             </div>
+            {
+                <AddBillModal></AddBillModal>
+            }
         </div>
     );
 };
