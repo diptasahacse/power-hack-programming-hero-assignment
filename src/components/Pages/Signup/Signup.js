@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import { Link } from "react-router-dom";
 const Signup = () => {
     const navigate = useNavigate();
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -125,7 +126,7 @@ const Signup = () => {
                             {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-600">{errors.password.message}</span>}
                         </label>
                     </div>
-
+                    <p>Already have an account? Please <Link className="text-primary" to='/signin'>Sign in here</Link></p>
                     <input className='btn btn-primary w-full' type="submit" value='Register' />
                 </form>
             </div>

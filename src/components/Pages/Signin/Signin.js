@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { Link } from "react-router-dom";
 const Signin = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = () => {
@@ -10,7 +11,7 @@ const Signin = () => {
             <h3 className='text-3xl font-bold'>SignIn</h3>
 
             <form onSubmit={handleSubmit(onSubmit)} className='mt-5'>
-                
+
                 {/* Email Input */}
                 <div className="form-control w-full">
                     <label className="label">
@@ -67,6 +68,9 @@ const Signin = () => {
                     </label>
                 </div>
 
+
+
+                <p>New here..? Please <Link className="text-primary" to='/signup'>Register here</Link></p>
                 <input className='btn btn-primary w-full' type="submit" value='Register' />
             </form>
         </div>
