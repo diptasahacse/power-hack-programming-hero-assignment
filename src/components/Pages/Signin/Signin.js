@@ -1,9 +1,42 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { toast } from 'react-toastify';
 const Signin = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const onSubmit = () => {
+    const onSubmit = (data) => {
+        const userInfo = {
+            email: data.email,
+            pass: data.password
+        }
+
+
+
+
+        fetch('http://localhost:5000/login', {
+            method: "POST",
+            headers: {
+                'content-type': "application/json"
+            },
+            body: JSON.stringify(userInfo)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.message == 'success') {
+                    console.log(data)
+                    const accessToken = data.token;
+                    localStorage.setItem("accessToken", accessToken)
+                    navigate(from, { replace: true });
+                }
+                else {
+                    toast.error(data.message)
+                    localStorage.removeItem('accessToken')
+                }
+            })
 
     }
     return (
@@ -71,7 +104,7 @@ const Signin = () => {
 
 
                 <p>New here..? Please <Link className="text-primary" to='/signup'>Register here</Link></p>
-                <input className='btn btn-primary w-full' type="submit" value='Register' />
+                <input className='btn btn-primary w-full' type="submit" value='Sign in' />
             </form>
         </div>
     );
